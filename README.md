@@ -1,10 +1,10 @@
-# MD2HTML
+# Markpress
 
 **Markdown → HTML, instantly.**
 
 A full-stack web tool for converting Markdown to HTML — with a beautiful two-panel editor UI, a drag-and-drop file loader, syntax-highlighted preview, and a developer-ready REST API.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/md2html)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/markpress)
 
 ---
 
@@ -37,8 +37,8 @@ A full-stack web tool for converting Markdown to HTML — with a beautiful two-p
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/md2html.git
-cd md2html
+git clone https://github.com/YOUR_USERNAME/markpress.git
+cd markpress
 
 # 2. Install dependencies
 npm install

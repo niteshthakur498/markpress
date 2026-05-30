@@ -9,7 +9,7 @@ import {
   ChangeEvent,
 } from "react";
 
-const SAMPLE_MARKDOWN = `# Welcome to MD2HTML
+const SAMPLE_MARKDOWN = `# Welcome to Markpress
 
 Convert your **Markdown** to clean HTML instantly.
 
@@ -231,10 +231,10 @@ ${html}
   return (
     <>
       <Head>
-        <title>MD2HTML | Markdown to HTML Converter</title>
+        <title>Markpress | Markdown to HTML Converter</title>
         <meta
           name="description"
-          content="Convert Markdown to clean HTML instantly. Free, fast, and developer-friendly."
+          content="Markpress — Convert Markdown to clean HTML instantly. Free, fast, and developer-friendly."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -249,7 +249,7 @@ ${html}
         >
           <div className="flex items-center gap-6">
             <span className="font-display-lg text-[22px] font-bold gradient-text tracking-tight">
-              MD2HTML
+              Markpress
             </span>
             <nav className="hidden md:flex items-center gap-6">
               <span className="text-primary font-bold border-b-2 border-primary pb-0.5 font-ui-label text-ui-label uppercase">

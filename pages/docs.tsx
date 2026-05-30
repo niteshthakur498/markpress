@@ -185,8 +185,8 @@ export default function Docs() {
   return (
     <>
       <Head>
-        <title>MD2HTML | API Documentation</title>
-        <meta name="description" content="API documentation for the MD2HTML Markdown to HTML conversion API." />
+        <title>Markpress | API Documentation</title>
+        <meta name="description" content="API documentation for the Markpress Markdown to HTML conversion API." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -199,7 +199,7 @@ export default function Docs() {
         >
           <div className="flex items-center gap-6">
             <span className="font-display-lg text-[22px] font-bold gradient-text tracking-tight">
-              MD2HTML
+              Markpress
             </span>
             <nav className="hidden md:flex items-center gap-6">
               <Link
@@ -600,9 +600,9 @@ export default function Docs() {
               }`}
             >
               <div className="flex items-center gap-4">
-                <span className="font-ui-label font-bold text-on-surface">MD2HTML</span>
+                <span className="font-ui-label font-bold text-on-surface">Markpress</span>
                 <span className={`font-ui-label text-ui-label ${muted}`}>
-                  © 2025 MD2HTML Utility. Built for developers.
+                  © 2025 Markpress Utility. Built for developers.
                 </span>
               </div>
               <nav className="flex gap-6">
