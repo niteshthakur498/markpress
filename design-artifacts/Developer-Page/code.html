@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MD2HTML | API Documentation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .panel-divider { border-color: #2E3245; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #111319; }
+        ::-webkit-scrollbar-thumb { background: #33343b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #464555; }
+        .gradient-text { background: linear-gradient(to right, #c4c0ff, #ffb785); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e3dfff",
+                        "on-surface-variant": "#c7c4d8",
+                        "surface-variant": "#33343b",
+                        "surface-container-highest": "#33343b",
+                        "secondary": "#c5c0ff",
+                        "surface-container-low": "#191b22",
+                        "warning": "#FFB020",
+                        "surface-container": "#1e1f26",
+                        "inverse-primary": "#4f44e2",
+                        "on-surface": "#e2e2eb",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3622ca",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#461f00",
+                        "tertiary-container": "#db761f",
+                        "syntax-keyword": "#A58EFB",
+                        "surface": "#111319",
+                        "surface-container-high": "#282a30",
+                        "on-tertiary": "#502500",
+                        "secondary-fixed-dim": "#c5c0ff",
+                        "primary-fixed": "#e3dfff",
+                        "outline": "#918fa1",
+                        "primary-fixed-dim": "#c4c0ff",
+                        "on-primary-fixed": "#100069",
+                        "tertiary-fixed": "#ffdcc6",
+                        "inverse-surface": "#e2e2eb",
+                        "secondary-container": "#3e26ca",
+                        "primary": "#c4c0ff",
+                        "on-secondary-fixed-variant": "#3b22c8",
+                        "on-secondary-fixed": "#140067",
+                        "success": "#009688",
+                        "on-secondary": "#2500a2",
+                        "bg-light": "#F8F9FC",
+                        "primary-container": "#8781ff",
+                        "on-background": "#e2e2eb",
+                        "surface-tint": "#c4c0ff",
+                        "on-tertiary-fixed": "#301400",
+                        "outline-variant": "#464555",
+                        "on-secondary-container": "#b6b0ff",
+                        "inverse-on-surface": "#2e3037",
+                        "on-primary": "#2000a4",
+                        "tertiary": "#ffb785",
+                        "error-container": "#93000a",
+                        "on-primary-container": "#1b0091",
+                        "background": "#111319",
+                        "surface-dim": "#111319",
+                        "tertiary-fixed-dim": "#ffb785",
+                        "error": "#E44D26",
+                        "surface-bright": "#373940",
+                        "surface-light": "#FFFFFF",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "syntax-comment": "#425A70",
+                        "surface-container-lowest": "#0c0e14",
+                        "surface-dark": "#1E2130"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "panel-gap": "1px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "code-block": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "ui-label": ["JetBrains Mono"],
+                        "body-base": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "code-block": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "ui-label": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-base": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-base text-body-base selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-[48px] bg-surface dark:bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-6">
+<span class="font-display-lg text-display-lg font-bold bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">MD2HTML</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-ui-label text-ui-label" href="#">Editor</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-ui-label text-ui-label" href="#">API Docs</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-ui-label text-ui-label" href="#">Guide</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-ui-label text-ui-label text-on-surface-variant hover:text-on-surface cursor-pointer">GitHub</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="terminal">terminal</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="settings">settings</span>
+</div>
+</header>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="hidden md:flex flex-col h-screen p-4 gap-panel-gap fixed left-0 top-[48px] w-64 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant">
+<div class="flex flex-col gap-2 mb-8">
+<div class="flex items-center gap-3 px-2">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]" data-icon="api">api</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-on-surface leading-none">Developer Portal</p>
+<p class="font-ui-label text-[10px] text-on-surface-variant">v1.0.4 stable</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1 flex-grow">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all font-ui-label text-ui-label" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span>Editor</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-xl transition-transform active:scale-[0.98] font-ui-label text-ui-label" href="#">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+<span>Endpoints</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all font-ui-label text-ui-label" href="#">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+<span>Authentication</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all font-ui-label text-ui-label" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+<span>Examples</span>
+</a>
+</nav>
+<button class="mt-auto mb-4 mx-2 py-3 bg-gradient-to-r from-primary to-secondary text-on-primary font-bold rounded-xl text-ui-label shadow-lg hover:brightness-110 transition-all">
+            Get API Key
+        </button>
+<div class="flex flex-col gap-1 pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-xl font-ui-label text-ui-label" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-xl font-ui-label text-ui-label" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 pt-[48px] min-h-screen bg-surface">
+<div class="max-w-4xl mx-auto px-margin py-12">
+<!-- Header Section -->
+<section class="mb-16">
+<h1 class="font-display-lg text-[48px] font-bold text-on-surface mb-4">Developer API</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-2xl">
+                    Integrate the industry's fastest Markdown-to-HTML conversion engine directly into your workflow. 
+                    Built for high-concurrency environments and precision rendering.
+                </p>
+<div class="mt-8 p-4 bg-surface-container-high rounded-xl border border-outline-variant inline-flex items-center gap-4">
+<span class="font-ui-label text-primary">Base URL:</span>
+<code class="font-code-block text-code-block text-secondary">https://api.md2html.io/v1</code>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface" data-icon="content_copy" onclick="navigator.clipboard.writeText('https://api.md2html.io/v1')">content_copy</button>
+</div>
+</section>
+<!-- Endpoint 1: Text Conversion -->
+<section class="mb-12">
+<div class="bg-surface-dark rounded-xl border-l-[8px] border-primary border-t border-r border-b border-outline-variant overflow-hidden">
+<div class="p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-3 py-1 bg-primary text-on-primary font-bold text-ui-label rounded">POST</span>
+<span class="font-code-block text-on-surface text-lg">/api/convert</span>
+</div>
+<p class="text-on-surface-variant mb-6">Convert raw Markdown text to sanitized, production-ready HTML with syntax highlighting support.</p>
+<div class="space-y-6">
+<div>
+<h4 class="font-ui-label text-primary mb-2 uppercase tracking-widest text-[10px]">Request Body (JSON)</h4>
+<div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant font-code-block text-code-block text-on-surface">
+<span class="text-syntax-keyword">{</span><br/>
+                                      <span class="text-tertiary">"markdown"</span>: <span class="text-success">"# Hello World\nThis is **bold** text."</span>,<br/>
+                                      <span class="text-tertiary">"config"</span>: { <span class="text-tertiary">"gfm"</span>: <span class="text-warning">true</span> }<br/>
+<span class="text-syntax-keyword">}</span>
+</div>
+</div>
+<div>
+<h4 class="font-ui-label text-primary mb-2 uppercase tracking-widest text-[10px]">Code Snippets</h4>
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant">
+<div class="flex border-b border-outline-variant">
+<button class="px-4 py-2 text-ui-label text-primary border-b-2 border-primary">cURL</button>
+<button class="px-4 py-2 text-ui-label text-on-surface-variant hover:text-on-surface">Python</button>
+<button class="px-4 py-2 text-ui-label text-on-surface-variant hover:text-on-surface">JavaScript</button>
+</div>
+<div class="p-4 font-code-block text-code-block text-on-surface-variant">
+                                        curl -X POST https://api.md2html.io/v1/convert \<br/>
+                                          -H <span class="text-success">"Authorization: Bearer YOUR_API_KEY"</span> \<br/>
+                                          -H <span class="text-success">"Content-Type: application/json"</span> \<br/>
+                                          -d <span class="text-success">'{"markdown": "# Hello"}'</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Endpoint 2: File Conversion -->
+<section class="mb-16">
+<div class="bg-surface-dark rounded-xl border-l-[8px] border-secondary border-t border-r border-b border-outline-variant overflow-hidden">
+<div class="p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-3 py-1 bg-secondary text-on-secondary font-bold text-ui-label rounded">POST</span>
+<span class="font-code-block text-on-surface text-lg">/api/convert/file</span>
+</div>
+<p class="text-on-surface-variant mb-6">Upload a physical <code class="text-on-surface">.md</code> or <code class="text-on-surface">.markdown</code> file for batch processing and conversion.</p>
+<h4 class="font-ui-label text-secondary mb-2 uppercase tracking-widest text-[10px]">Form Data</h4>
+<div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant font-code-block text-code-block text-on-surface">
+<span class="text-syntax-comment"># Multipart Form Data</span><br/>
+<span class="text-tertiary">'file'</span>: (binary stream),<br/>
+<span class="text-tertiary">'theme'</span>: <span class="text-success">'github-dark'</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Try It Section -->
+<section class="mb-16">
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="science">science</span>
+                        Test the API
+                    </h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="flex flex-col gap-4">
+<label class="font-ui-label text-on-surface-variant uppercase text-[10px]">Markdown Input</label>
+<textarea class="bg-surface border border-outline-variant rounded-xl p-4 font-code-block text-code-block text-on-surface focus:border-primary focus:ring-0 h-40 resize-none" id="testInput" placeholder="## Try it live..."></textarea>
+<button class="w-full py-3 bg-gradient-to-r from-primary to-secondary text-on-primary font-bold rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-2" onclick="simulateApi()">
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+                                Send Request
+                            </button>
+</div>
+<div class="flex flex-col gap-4">
+<label class="font-ui-label text-on-surface-variant uppercase text-[10px]">JSON Response Preview</label>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 h-40 overflow-y-auto font-code-block text-code-block text-on-surface-variant" id="jsonResponse">
+<span class="text-syntax-comment">// Click "Send Request" to see output</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Image Callout -->
+<section class="mb-16">
+<div class="relative h-64 rounded-3xl overflow-hidden group">
+<img alt="Developer Workspace" class="w-full h-full object-cover brightness-50 group-hover:scale-105 transition-transform duration-700" data-alt="A high-angle cinematic photograph of a software developer's workspace in a dark, moody room. Multiple high-resolution monitors display complex lines of code with vibrant purple and cyan syntax highlighting. The lighting is low-key, with the main glow coming from the screens and a subtle warm ambient light in the corner. The aesthetic is clean, professional, and high-tech, aligning with a premium developer tool palette of deep blacks and electric accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4cPnYpLfE42mn4WUX0NNkEplNmEU7ZUIs8OZK1ZW9ne2xoowfX9CIxJj4-D-K19rngK1ZPUfOwG9kq6Lx6hyanE-rXW4rm8aGf_fEdoMvrkowib0FxA7EmiKcERV8V-XNoDflcrLtDyrDnODuyrKUahOQwKxeVlwUYD0eBvKmgx5HW57vrVweLhyFA7m8EgMf4tT9IBWuoHp45htvbsIDgVL5-dtfU1x-LSyV43tIWmTotH4kcK-8Tr7C8XhrHNP8BO8bbUg9eg"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+<h3 class="text-3xl font-bold text-white mb-2">Built for Performance</h3>
+<p class="text-on-surface-variant max-w-md">Our edge-rendering technology ensures sub-10ms conversion times for enterprise-scale documentation.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-gutter px-margin flex flex-col md:flex-row justify-between items-center bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant md:ml-64 w-[calc(100%-16rem)]">
+<div class="flex flex-col md:flex-row items-center gap-4 mb-4 md:mb-0">
+<span class="font-ui-label text-ui-label font-bold text-on-surface">MD2HTML</span>
+<span class="font-ui-label text-ui-label text-on-surface-variant">© 2024 MD2HTML Utility. Built for developers.</span>
+</div>
+<nav class="flex gap-6">
+<a class="font-ui-label text-ui-label text-on-surface-variant hover:text-on-surface underline" href="#">Privacy</a>
+<a class="font-ui-label text-ui-label text-on-surface-variant hover:text-on-surface underline" href="#">Terms</a>
+<a class="font-ui-label text-ui-label text-on-surface-variant hover:text-on-surface underline" href="#">Changelog</a>
+<a class="font-ui-label text-ui-label text-on-surface-variant hover:text-on-surface underline" href="#">Status</a>
+</nav>
+</footer>
+<script>
+        function simulateApi() {
+            const input = document.getElementById('testInput').value;
+            const output = document.getElementById('jsonResponse');
+            
+            output.innerHTML = `<span class="text-secondary animate-pulse">Requesting...</span>`;
+            
+            setTimeout(() => {
+                const response = {
+                    status: 200,
+                    success: true,
+                    data: {
+                        id: "conv_" + Math.random().toString(36).substr(2, 9),
+                        html: input ? `<h1>${input.replace('#', '')}</h1>` : "<h1>Placeholder Title</h1>",
+                        tokens: input.length,
+                        execution_time: "4.2ms"
+                    }
+                };
+                
+                output.innerHTML = `<pre class="text-on-surface">${JSON.stringify(response, null, 2)}</pre>`;
+                
+                // Success feedback
+                const btn = event.currentTarget;
+                const originalContent = btn.innerHTML;
+                btn.classList.add('bg-success');
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Success';
+                setTimeout(() => {
+                    btn.classList.remove('bg-success');
+                    btn.innerHTML = originalContent;
+                }, 2000);
+            }, 800);
+        }
+    </script>
+</body></html>
