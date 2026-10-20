@@ -1,10 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { marked } from "marked";
+import { convertMarkdown, MAX_SIZE } from "@/lib/markdown.mjs";
 import formidable, { File } from "formidable";
 import fs from "fs/promises";
 import path from "path";
-
-const MAX_SIZE = 1 * 1024 * 1024; // 1MB
 
 type SuccessResponse = { html: string; success: true; filename: string };
 type ErrorResponse = { error: string; success: false };
@@ -71,8 +69,7 @@ export default async function handler(
 
   const content = await fs.readFile(file.filepath, "utf-8");
 
-  marked.setOptions({ gfm: true, breaks: true });
-  const html = await marked.parse(content);
+  const html = await convertMarkdown(content);
 
   const outputFilename =
     path.basename(originalName, ext) + ".html";

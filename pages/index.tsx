@@ -8,6 +8,7 @@ import {
   DragEvent,
   ChangeEvent,
 } from "react";
+import { titleFromMarkdown, wrapHtmlDocument } from "@/lib/html-document.mjs";
 
 const SAMPLE_MARKDOWN = `# Welcome to Markpress
 
@@ -176,27 +177,10 @@ export default function Home() {
       addToast("Nothing to download. Convert first.", "info");
       return;
     }
-    const fullHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Converted Document</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; }
-    h1,h2,h3,h4 { font-weight: 600; margin-top: 1.5em; }
-    code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; }
-    pre { background: #f4f4f4; padding: 16px; border-radius: 6px; overflow-x: auto; }
-    blockquote { border-left: 3px solid #6c63ff; padding-left: 16px; color: #666; margin: 16px 0; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ddd; padding: 8px 12px; }
-    th { background: #f9f9f9; }
-  </style>
-</head>
-<body>
-${html}
-</body>
-</html>`;
+    const fullHtml = wrapHtmlDocument(
+      html,
+      titleFromMarkdown(markdown) ?? undefined
+    );
     const blob = new Blob([fullHtml], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

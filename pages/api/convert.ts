@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { marked } from "marked";
-
-const MAX_SIZE = 1 * 1024 * 1024; // 1MB
+import { convertMarkdown, MAX_SIZE } from "@/lib/markdown.mjs";
 
 type SuccessResponse = { html: string; success: true };
 type ErrorResponse = { error: string; success: false };
@@ -40,9 +38,7 @@ export default async function handler(
       .json({ error: "Input exceeds 1MB limit", success: false });
   }
 
-  marked.setOptions({ gfm: true, breaks: true });
-
-  const html = await marked.parse(markdown);
+  const html = await convertMarkdown(markdown);
 
   return res.status(200).json({ html, success: true });
 }

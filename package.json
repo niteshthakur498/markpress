@@ -2,11 +2,15 @@
   "name": "markpress",
   "version": "1.0.0",
   "private": true,
+  "bin": {
+    "markpress": "./bin/markpress.mjs"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "convert": "node bin/markpress.mjs"
   },
   "dependencies": {
     "formidable": "^3.5.1",
